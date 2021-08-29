@@ -21,7 +21,7 @@ export class CardComponent implements OnInit {
   xiaomi: any[] = [];
   oppo: any[] = [];
   nokia: any[] = [];
-
+  loading:any=false
   constructor(
     private _products: ProductService,
     private _order: OrderService,
@@ -49,9 +49,10 @@ export class CardComponent implements OnInit {
           this.nokia = res.data.products
             .filter((a: any) => a.companyName == 'nokia')
             .reverse();
+          this.loading = true;
         }
       },
-      (err) => console.log(err.error)
+      (err) => (this.loading = false)
     );
   }
 

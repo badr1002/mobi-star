@@ -1,6 +1,8 @@
 <hr class="hr my-5">
 <!--  Apple -->
-<section class="container text-center mb-4" *ngIf="apple.length>1">
+<div class="alert alert-primary m-5" *ngIf="!loading">Loading...</div>
+<div *ngIf="loading">
+  <section class="container text-center mb-4" *ngIf="apple.length>1">
   <h3>Apple</h3>
   <div class="row wow fadeIn">
     <div class="col-lg-3 col mb-2" *ngFor="let mobile of apple | paginate: {
@@ -148,3 +150,5 @@
     </div>
   </div>
 </section>
+
+</div>

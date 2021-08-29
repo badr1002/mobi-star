@@ -24,7 +24,8 @@
     </div>
 
     <hr class="hr">
-    <section class="container text-center mb-4">
+    <div class="alert alert-primary m-2" *ngIf="!loading">Loading...</div>
+    <section class="container text-center mb-4" *ngIf="loading">
       <h3>The most famous mobiles</h3>
       <div class="row wow fadeIn">
         <div class="col mb-2" *ngFor="let mobile of mobiles | paginate: {
