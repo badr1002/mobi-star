@@ -29,10 +29,9 @@ class User {
     try {
       const checkEmail = await userModel.findOne({ email: req.body.email });
       if (checkEmail) throw new Error("this email is already exist!");
-      const checkMobile = await userModel.findOne({ mobile: req.body.mobile });
-      if (checkMobile) throw new Error("this mobile is used before!");
-      const user = new userModel(req.body);
-      await user.save();
+      // const checkMobile = await userModel.findOne({ mobile: req.body.mobile });
+      // if (checkMobile) throw new Error("this mobile is used before!");
+      await new userModel(req.body);
       res.status(200).send({
         apiStatus: true,
         msg: "registered successfully",
@@ -46,6 +45,8 @@ class User {
       });
     }
   };
+
+  
 
   static login = async (req, res) => {
     try {

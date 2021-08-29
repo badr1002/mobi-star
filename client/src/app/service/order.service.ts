@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class OrderService {
-  url = 'http://localhost:5000';
+  url = 'https://mobi-star.herokuapp.com/api';
   orderCounter: number = 0;
   constructor(private _http: HttpClient, private _router: Router) {
     _http.get(`${this.url}/order/allOrders`).subscribe((res: any) => {

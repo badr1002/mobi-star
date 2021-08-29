@@ -8,6 +8,7 @@ const upload = require("../app/middleware/uploadFile.upload");
 router.get("/allUsers", UserControlles.getAllUsers);
 
 router.post("/register", UserControlles.register);
+
 router.post("/login", UserControlles.login);
 router.get("/active/:key", UserControlles.activateUser);
 

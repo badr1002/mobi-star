@@ -15,12 +15,12 @@ const productRoutes = require("../route/product.route");
 const orderRoutes = require("../route/order.route");
 
 app.use("/", express.static(path.join(__dirname, "../client/dist/mobi-star")));
-app.use("/user", userRoutes);
-app.use("/role", roleRoutes);
-app.use("/route", allRoutes);
-app.use("/product", productRoutes);
-app.use("/order", orderRoutes);
-app.post('/contact', (req, res) => {
+app.use("/api/user", userRoutes);
+app.use("/api/role", roleRoutes);
+app.use("/api/route", allRoutes);
+app.use("/api/product", productRoutes);
+app.use("/api/order", orderRoutes);
+app.post('/api/contact', (req, res) => {
   try {
      helper.sendContactMessage(
        req.body.name,

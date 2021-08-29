@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  url = 'http://localhost:5000';
+  url = 'https://mobi-star.herokuapp.com/api';
   isLogin = false;
   isAdmin = false;
   user: any;

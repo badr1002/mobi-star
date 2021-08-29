@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProductService {
-  url = 'http://localhost:5000';
+  url = 'https://mobi-star.herokuapp.com/api';
   constructor(private _http: HttpClient, private _router: Router) {}
   getAllProducts(): Observable<any> {
     return this._http.get(`${this.url}/product/allProducts`);

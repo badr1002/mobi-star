@@ -2,7 +2,6 @@ import { OrderService } from './service/order.service';
 import { UserService } from './service/user.service';
 import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
