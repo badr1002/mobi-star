@@ -1,0 +1,49 @@
+.sidebar {
+  position: relative;
+  top: 60px;
+  width: 22rem !important;
+  min-height: 67vh;
+  box-shadow: 1px 1px 1px 1px rgb(189, 187, 187);
+}
+.prand {
+  width: 50px;
+  height: 40px;
+
+}
+
+
+.card {
+  border: rgb(216, 215, 215) 1px solid;
+  border-radius: 15px;
+  width: 100px;
+  height: 150px;
+  box-shadow: 1px 1px rgb(218, 216, 216);
+  overflow: hidden;
+}
+
+.card .img {
+  width: 100px;
+  height: 120px;
+  cursor: pointer;
+}
+
+.hr {
+  overflow: visible;
+  /* For IE */
+  padding: 0;
+  border: none;
+  border-top: medium double #333;
+  color: #333;
+  text-align: center;
+
+}
+
+.hr:after {
+  content: "§";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: white;
+}

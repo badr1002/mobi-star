@@ -1,0 +1,14 @@
+h3 {
+  color: rgb(194, 166, 8);
+  font-size: large;
+  font-weight: bolder;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.detailes {
+  padding: 10px;
+  background-color: rgba(0,0,0,0.5);
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: 2px 2px 2px 2px rgb(3, 112, 12);
+}

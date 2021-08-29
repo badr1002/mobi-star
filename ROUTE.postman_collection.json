@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "a0490fd4-ec42-4dc3-98cc-0d29a56d5979",
+		"name": "ROUTE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADD ROUTE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roles\":[\r\n        \r\n            \"60f0d888dee10d0878c99803\"\r\n        \r\n    ]\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/routes/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"routes",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD ROLE TO ROUTE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

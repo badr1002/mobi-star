@@ -1,0 +1,35 @@
+<section class="container text-center mb-4"  *ngIf="mobiles.length>1">
+   <h3 class="alert alert-success m-5">{{mobiles[0].companyName}}</h3>
+  <div class="row">
+    <div class="col-12">
+      <div class="row wow fadeIn ">
+    <div class="col-lg-3 col mb-5" *ngFor="let mobile of mobiles | paginate: { itemsPerPage: selectedLimit, currentPage: p }">
+      <div class="card"  >
+       <a routerLink="/product/{{mobile._id}}"> <img src="{{mobile.stock[0].image}}" class="img" alt="{{mobile.name}}"></a>
+        <h3>{{mobile.name}}</h3>
+        <span><strong>{{mobile.stock[0].price}}$</strong></span>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+    </div>
+  </div>
+</section>
+<!-- <section class="container text-center mb-4" *ngIf="mobiles.length>1">
+   <h3>Apple</h3>
+
+
+  <div class="row wow fadeIn">
+    <div class="col-lg-3 col mb-2" *ngFor="let mobile of mobiles | paginate: { itemsPerPage: 4, currentPage: p } ">
+      <div class="card"  >
+       <a routerLink="/product/{{mobile._id}}"> <img src="{{mobile.stock[0].image}}" class="img" alt="{{mobile.name}}"></a>
+        <h3>{{mobile.name}}</h3>
+        <span><strong>{{mobile.stock[0].price}}$</strong></span>
+      </div>
+    </div>
+    <div class="col-12">
+      <a routerLink="/company" [queryParams]="{ name: 'apple'}"><button class="btn btn-primary m-2">Show more</button></a>
+    </div>
+       <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</section> -->

@@ -1,0 +1,42 @@
+<div class="sidebar">
+  <div class="container text-center">
+
+    <h3 class="alert alert-info mb-2">Companies</h3>
+    <div class="row">
+      <div routerLink="/company" [queryParams]="{ name: 'apple'}" class="col
+        prandbox btn btn-light m-3"><img class="prand"
+          src="../../../../assets/img/company-prands/apple.ico" alt='...'></div>
+      <div routerLink="/company" [queryParams]="{ name: 'samsung'}" class="col
+        prandbox btn btn-light m-3"> <img class="prand"
+          src="../../../../assets/img/company-prands/samsung.ico" alt='...'></div>
+      <div routerLink="/company" [queryParams]="{ name: 'xiaomi'}" class="col
+        prandbox btn btn-light m-3"> <img class="prand"
+          src="../../../../assets/img/company-prands/xiaomi.png" alt='...'></div>
+      <div routerLink="/company" [queryParams]="{ name: 'oppo'}" class="col
+        prandbox btn btn-light m-3"> <img class="prand"
+          src="../../../../assets/img/company-prands/oppo.png" alt='...'></div>
+      <div routerLink="/company" [queryParams]="{ name: 'huawei'}" class="col
+        prandbox btn btn-light m-3"> <img class="prand"
+          src="../../../../assets/img/company-prands/huawei.ico" alt='...'></div>
+      <div routerLink="/company" [queryParams]="{ name: 'nokia'}" class="col
+        prandbox btn btn-light m-3"> <img class="prand"
+          src="../../../../assets/img/company-prands/nokia.png" alt='...'></div>
+    </div>
+
+    <hr class="hr">
+    <section class="container text-center mb-4">
+      <h3>The most famous mobiles</h3>
+      <div class="row wow fadeIn">
+        <div class="col mb-2" *ngFor="let mobile of mobiles | paginate: {
+          itemsPerPage: 4, currentPage: p }">
+          <div class="card">
+            <img src="{{mobile.stock[0].image}}" class="img"
+              alt="{{mobile.name}}">
+            <a  routerLink="/product/{{mobile._id}}">{{mobile.name}}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

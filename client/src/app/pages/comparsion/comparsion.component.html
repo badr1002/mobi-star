@@ -1,0 +1,112 @@
+<section class="product text-center">
+  <h3 class="alert alert-secondary">Comparsion Detailes</h3>
+  <div class="alert alert-danger m-5" *ngIf="!mobiles[0] && mobiles[1]"> No
+    mobiles in Comparsion Field!</div>
+  <div class="container">
+    <div class="row">
+
+      <!--mobiles[0] Datiales-->
+      <div class="col-lg-6 col-sm-12 detailes" *ngIf="mobiles[0]">
+        <h3 class="badge bg-secondary">First Mobile</h3>
+        <div class="row">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th class="text-success">Name</th>
+                <td>{{mobiles[0]?.name}}</td>
+              </tr>
+              <tr>
+                <th class="text-success">Company Name</th>
+                <td>{{mobiles[0]?.companyName}}</td>
+              </tr>
+              <tr>
+                <th class="text-success">Cpu</th>
+                <th class="text-success">Price</th>
+                <th class="text-success">Battary</th>
+              </tr>
+              <tr>
+                <td>{{mobiles[0]?.features.cpu}}</td>
+                <td>{{mobiles[0]?.stock[0].price}}$</td>
+                <td>{{mobiles[0]?.features.battery}}MA</td>
+              </tr>
+              <tr>
+                <th class="text-success">Front Camera</th>
+                <th></th>
+                <th class="text-success">Back Camera</th>
+              </tr>
+              <tr>
+                <td>{{mobiles[0]?.features.frontCam}}MB</td>
+                <td></td>
+                <td>{{mobiles[0]?.features.backCam}}MB</td>
+              </tr>
+              <tr>
+                <th class="text-success">color</th>
+                <th class="text-success">Ram</th>
+                <th class="text-success">Memory</th>
+              </tr>
+              <tr *ngFor="let item of mobiles[0].stock">
+                <td>{{item.color}}</td>
+                <td>{{item.ram}}GB</td>
+                <td>{{item.memory}}GB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!--mobiles[1] Datiales-->
+      <div class="col-lg-6 col-sm-12 detailes" *ngIf="mobiles[1]">
+        <h3 class="badge bg-secondary">Second Mobile</h3>
+        <div class="row">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th class="text-success">Name</th>
+                <td>{{mobiles[1]?.name}}</td>
+              </tr>
+              <tr>
+                <th class="text-success">Company Name</th>
+                <td>{{mobiles[1]?.companyName}}</td>
+              </tr>
+              <tr>
+                <th class="text-success">Cpu</th>
+                <th class="text-success">Price</th>
+                <th class="text-success">Battary</th>
+              </tr>
+              <tr>
+                <td>{{mobiles[1]?.features.cpu}}</td>
+                <td>{{mobiles[1]?.stock[0].price}}$</td>
+                <td>{{mobiles[1]?.features.battery}}MA</td>
+              </tr>
+              <tr>
+                <th class="text-success">Front Camera</th>
+                <th></th>
+                <th class="text-success">Back Camera</th>
+              </tr>
+              <tr>
+                <td>{{mobiles[1]?.features.frontCam}}MB</td>
+                <td></td>
+                <td>{{mobiles[1]?.features.backCam}}MB</td>
+              </tr>
+              <tr>
+                <th class="text-success">color</th>
+                <th class="text-success">Ram</th>
+                <th class="text-success">Memory</th>
+              </tr>
+              <tr *ngFor="let item of mobiles[1].stock">
+                <td>{{item.color}}</td>
+                <td>{{item.ram}}GB</td>
+                <td>{{item.memory}}GB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-12 m-5">
+        <a routerLink="/"><button class="btn btn-warning">Back to Home</button></a>
+      </div>
+    </div>
+  </div>
+</section>

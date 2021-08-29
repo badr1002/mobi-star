@@ -1,0 +1,11 @@
+<carousel>
+    <slide *ngFor="let item of mobiles">
+      <img src="{{item.stock[0].image}}" alt="first slide" style="display: block; width:
+        100%; height: 700px;">
+      <div class="carousel-caption d-none d-md-block detailes">
+        <h3>{{item.name}}</h3>
+        <p>{{item.features.cpu}} {{item.features.battery}}.</p>
+      </div>
+    </slide>
+
+  </carousel>

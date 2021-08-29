@@ -1,0 +1,116 @@
+
+<div id="wrapper" style="margin-top: -60px;">
+  <app-sidebar></app-sidebar>
+  <div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+      <app-dash-nav></app-dash-nav>
+      <div class="container-fluid">
+        <div class="card shadow">
+          <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold alert alert-info">Products Info</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+
+
+              <div class="col-md-6 text-nowrap">
+                <div id="dataTable_length" class="dataTables_length"
+                  aria-controls="dataTable">
+                  <div class="row">
+                    <div class="col">
+                      <label class="form-label">Show&nbsp;
+                        <select class="d-inline-block form-select
+                          form-select-sm"
+                          [(ngModel)]="selectedLimit">
+                          <option [value]='limit' *ngFor="let limit of limits">
+                            {{limit}}
+                          </option>
+                        </select>
+                        &nbsp;
+                      </label>
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-outline-success"
+                        (click)="addRoute()">+</button>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="text-md-end dataTables_filter"
+                  id="dataTable_filter"><label class="form-label"><input
+                      type="search" class="form-control form-control-sm"
+                      aria-controls="dataTable" placeholder="Search"
+                      [(ngModel)]="search_term"
+                      (ngModelChange)="handleSearch()"></label></div>
+              </div>
+            </div>
+            <div class="table-responsive table mt-2" id="dataTable"
+              role="grid"
+              aria-describedby="dataTable_info">
+              <div class="alert alert-primary m-2" *ngIf="!loading">Loading...</div>
+              <app-add-product (messageEvent)="receiveMessage($event)"
+                *ngIf='addRouteForm'></app-add-product>
+              <table class="table my-0" id="dataTable" *ngIf="loading">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>companyName</th>
+                    <th>Stock</th>
+                    <th>Cpu</th>
+                    <th>Camera</th>
+                    <th>Battery</th>
+                    <th>Start date</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of products | paginate: { itemsPerPage:
+                    selectedLimit, currentPage: p }">
+                    <td><img class="rounded-circle me-2" width="30"
+                        height="30"
+                        src="assets/img/avatars/avatar1.jpeg">
+                      <a [routerLink]="['/dashboard/product']"
+                        [queryParams]="{name: item.name,id:enCoded(item._id)}">{{item.name}}</a></td>
+                    <td>{{item.companyName}}</td>
+                    <td>{{item.stock.length}}</td>
+                    <td>{{item.features.cpu}}</td>
+                    <td><p>Front: {{item.features.frontCam}}</p> <p>Back: {{item.features.backCam}}</p></td>
+                    <td>{{item.features.battery}}</td>
+                    <td>{{convertDate(item.createdAt)}}</td>
+                    <td>
+                      <button class="btn btn-danger mx-2" (click)=" handleDeleteProduct(item._id)">X</button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot></tfoot>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-md-6 align-self-center">
+                <p id="dataTable_info" class="dataTables_info" role="status"
+                  aria-live="polite">Showing {{p}} to {{selectedLimit}} of
+                  {{products.length}}</p>
+              </div>
+
+              <div class="col-md-6">
+                <nav class="d-lg-flex justify-content-lg-end
+                  dataTables_paginate
+                  paging_simple_numbers">
+
+                  <div class="pagination">
+                    <pagination-controls (pageChange)="p= $event"></pagination-controls>
+                  </div>
+
+                </nav>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <app-left-sidebar class="col-lg-4 col-sm-12 mb-5"></app-left-sidebar>
+    <div class="col-lg-8 col-sm-12">
+      <h1 class="alert alert-danger m-5" *ngIf='msg'>{{msg}}</h1>
+      <section class="container text-center m-5" *ngIf="mobiles.length>1">
+            <div class="row wow fadeIn">
+              <div class="col-lg-3 col mb-5" *ngFor="let mobile of mobiles |
+                paginate: { itemsPerPage: 8, currentPage: p }">
+                <div class="card">
+                  <a routerLink="/product/{{mobile._id}}"> <img
+                      src="{{mobile.stock[0].image}}" class="img"
+                      alt="{{mobile.name}}"></a>
+                  <h3>{{mobile.name}}</h3>
+                  <span><strong>{{mobile.stock[0].price}}$</strong></span>
+                </div>
+              </div>
+              <pagination-controls (pageChange)="p= $event"></pagination-controls>
+            </div>
+      </section>
+
+    </div>
+  </div>
+</div>

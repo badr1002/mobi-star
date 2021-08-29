@@ -1,0 +1,21 @@
+register => (password) => bcrypt.hash
+login => {
+    1- check (email) => check (password) => return user
+    2- create token => (userId) encrypt by jwt => svae as user.tokens[] => return token
+    3- create mac => get mac by macadress.one() => svae as user.macs[] => return mac
+}
+(user, token, mac)
+
+profile_page =>{
+    get token from header (Authorizations) => un encrypt token (_id) 
+    get mac from header (Mac) 
+    check user (token , decodedToken, mac) 
+    if(!user) throw new Error('user not found')
+
+    return user
+}
+
+
+role {
+    user/dashboard  {admin}
+}

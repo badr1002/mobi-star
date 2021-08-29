@@ -1,0 +1,94 @@
+
+<div id="wrapper" style="margin-top: -60px;">
+  <app-sidebar ></app-sidebar>
+  <div class="d-flex flex-column" id="content-wrapper">
+    <app-dash-nav></app-dash-nav>
+    <div id="content"  >
+      <div class="container-fluid">
+        <div class="card shadow">
+          <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold alert alert-info">Orders Info</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+
+
+              <div class="col-md-6 text-nowrap">
+                <div id="dataTable_length" class="dataTables_length"
+                  aria-controls="dataTable">
+                  <div class="row">
+                    <div class="col">
+                      <label class="form-label">Show&nbsp;
+                        <select class="d-inline-block form-select
+                          form-select-sm"
+                          [(ngModel)]="selectedLimit">
+                          <option [value]='limit' *ngFor="let limit of limits">
+                            {{limit}}
+                          </option>
+                        </select>
+                        &nbsp;
+                      </label>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="text-md-end dataTables_filter"
+                  id="dataTable_filter"><label class="form-label"><input
+                      type="search" class="form-control form-control-sm"
+                      aria-controls="dataTable" placeholder="Search"
+                      [(ngModel)]="search_term"
+                      (ngModelChange)="handleSearch()"></label></div>
+              </div>
+            </div>
+            <div class="table-responsive table mt-2" id="dataTable"
+              role="grid"
+              aria-describedby="dataTable_info">
+              <div class="alert alert-primary m-2" *ngIf="!loading">Loading...</div>
+              <div class="container " *ngIf="loading">
+
+                <div class="order" *ngFor="let order of orders | paginate: {
+                  itemsPerPage:
+                  selectedLimit, currentPage: p };let i=index">
+                  <div class="row">
+                    <h3 class="col">Order {{i}}</h3>
+                    <h3 class="col"> Order status: <span class="badge bg-success" *ngIf="order.status">Completed</span></h3>
+                    <h3 class="col"><span class="badge bg-danger" *ngIf="!order.status">Active</span></h3>
+                    <div class="col"><button class="btn btn-outline-danger btn-sm" (click)="handleDeleteOrder(order._id)">X</button></div>
+                    <div class="col-12">Name: <strong>{{order.name}}</strong></div>
+                    <div class="col-12">Company name: <strong>{{order.companyName}}</strong></div>
+                    <div class="col-12">Quantity: <strong>{{order.quantity}}</strong></div>
+                    <div class="col-12">Price for one: <strong>{{order.stock.price}}$</strong></div>
+                    <div class="col-12">Color: <strong>{{order.stock.color}}</strong></div>
+                    <div class="col-12">Ram/Memory: <strong>{{order.stock.ram}}/{{order.stock.memory}}</strong></div>
+                    <div class="col-12">Total price: <strong>{{order.totalPrice}}</strong></div>
+                    <div class="col-12">Completed At: <strong>{{order.updatedAt}}</strong></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status"
+                      aria-live="polite">
+                      Showing {{p}} to {{selectedLimit}} of {{orders.length}}</p>
+                  </div>
+                  <div class="col-md-6">
+                    <nav class="d-lg-flex
+                      justify-content-lg-enddataTables_paginatepaging_simple_numbers">
+                      <div class="pagination">
+                        <pagination-controls (pageChange)="p= $event"></pagination-controls>
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>

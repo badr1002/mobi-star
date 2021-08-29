@@ -1,0 +1,11 @@
+.order {
+  padding: 10px;
+  border-radius: 25px;
+  box-shadow: 2px 2px 2px 2px rgb(3, 112, 12);
+}
+
+table td i.flaticon-cart-bag-1 {
+  font-size: 28px;
+  color: #1a73e9;
+}
+

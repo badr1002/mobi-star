@@ -1,0 +1,71 @@
+<section class="product">
+  <h3 class="alert alert-info">Product Detailes</h3>
+  <div class="container">
+    <div class="row">
+      <!--Slider-->
+      <div class="col-lg-6 col-sm-12">
+        <carousel>
+          <slide *ngFor="let item of mobile?.stock">
+            <img src="{{item.image}}" alt="first slide" style="display: block;
+              width:
+              300px; height: 500px;">
+          </slide>
+        </carousel>
+      </div>
+      <!--Mobile Datiales-->
+      <div class="col-lg-6 col-sm-12 detailes">
+        <div class="row">
+          <div class="col-12 mb-2">
+            <strong>Name <span class="text-success">{{mobile?.name}}</span></strong>
+          </div>
+          <div class="col-12 mb-2">
+             <strong>Company <span class="text-success">{{mobile?.companyName}}</span></strong>
+          </div>
+            <div class="col-12 mb-2">
+             <strong>CPU </strong> <strong class="text-primary">{{mobile?.features.cpu}}</strong>
+          </div>
+          <div class="col-12 mb-2">
+          <strong>Color</strong>  <Select class="form-select" (change)="handleColor($event.target)">
+              <option>Select Color</option>
+              <option *ngFor="let item of mobile?.stock" value="{{item.color}}">{{item.color}}</option>
+            </Select>
+            <div class="alert alert-danger" *ngIf="msgColor">{{msgColor}}</div>
+          </div>
+          <div class="col-12 mb-2">
+            <strong>Ram And Memory</strong>  <Select class="form-select">
+              <option *ngFor="let item of mobile?.stock">{{item.ram}}/{{item.memory}}</option>
+            </Select>
+          </div>
+           <div class="col-12 mb-2">
+             <strong>Price </strong> <strong class="text-info">{{mobile?.stock[0].price}}</strong>$
+          </div>
+          <div class="col-12 mb-2">
+            <strong>Camera</strong>
+            <p>Front <strong class="text-danger">{{mobile?.features.frontCam}}</strong>MB</p>
+            <p>Back <strong class="text-danger">{{mobile?.features.backCam}}</strong>MB</p>
+          </div>
+          <div class="col-12 mb-2">
+             <strong>Battery</strong> <strong class="text-danger">{{mobile?.features.battery}}</strong>MA
+          </div>
+          <div class="col-4 ">
+            <button class="btn btn-primary" (click)="handleAddProductToCard(mobile._id)">Add to Card</button>
+          </div>
+           <div class="col-4 ">
+           <i class="fas fa-star fa-2x text-warning" style="cursor: pointer;" *ngIf="rateStatus" (click)="deleteRate(mobile._id)"></i>
+           <i class="far fa-star  fa-2x text-warning" style="cursor: pointer;" *ngIf="!rateStatus" (click)="addRate(mobile._id)"></i>
+           <span class=" badge bg-secondary ">{{rates.length}}</span>
+          </div>
+          <div class="col-4 ">
+            <a routerLink="/"><button class="btn btn-warning">Back to Home</button></a>
+          </div>
+        <div class="col-12">
+            <button class="btn btn-secondary btn-sm" (click)="addToCompare(mobile._id)"> Add to Compare</button>
+        </div>
+          <div class="col-12 my-3" *ngIf="msg">
+             <div class="alert alert-{{alert}}" >{{msg}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,280 @@
+ <div class="row">
+  <div class="col">
+    <div class="card shadow mb-3">
+      <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold"><strong>Add Product</strong></p>
+      </div>
+      <div class="card-body">
+
+        <div [formGroup]="orderForm">
+          <div class="container">
+            <div class="form-control-user alert alert-{{alert}}" *ngIf="msg">
+              {{msg}}
+            </div>
+
+            <div class="row">
+              <div class="col">
+
+                <!-- Name  -->
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><strong>Name</strong></span>
+                  </div>
+                  <input
+                    class="form-control" type="text" name="name"
+                    placeholder="Name" formControlName="name">
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="orderForm.get('name')?.invalid &&
+                  (orderForm.get('name')?.dirty ||
+                  orderForm.get('name')?.touched)">
+                  <div *ngIf="orderForm.get('name')?.errors?.required">
+                    Name is required
+                  </div>
+                </div>
+
+                <!-- Company -->
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><strong>companyName</strong></span>
+                  </div>
+                  <input
+                    class="form-control" type="text" name="companyName"
+                    placeholder="Company Name" formControlName="companyName">
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="orderForm.get('companyName')?.invalid &&
+                  (orderForm.get('companyName')?.dirty ||
+                  orderForm.get('companyName')?.touched)">
+                  <div *ngIf="orderForm.get('companyName')?.errors?.required">
+                    companyName is required
+                  </div>
+                </div>
+                <!-- Features -->
+              <div formGroupName='features'>
+                  <!-- Cpu -->
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><strong>Cpu</strong></span>
+                  </div>
+                  <input
+                    class="form-control" type="text" name="cpu"
+                    placeholder="Snapdragon 720 14n" formControlName="cpu">
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="orderForm.get('cpu')?.invalid &&
+                  (orderForm.get('cpu')?.dirty ||
+                  orderForm.get('cpu')?.touched)">
+                  <div *ngIf="orderForm.get('cpu')?.errors?.required">
+                    cpu is required
+                  </div>
+                </div>
+
+                <!-- Front Camera -->
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><strong>Front Camera</strong></span>
+                  </div>
+                  <input
+                    class="form-control" type="text" name="frontCam"
+                    placeholder="15Mp" formControlName="frontCam">
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="orderForm.get('frontCam')?.invalid &&
+                  (orderForm.get('frontCam')?.dirty ||
+                  orderForm.get('frontCam')?.touched)">
+                  <div *ngIf="orderForm.get('frontCam')?.errors?.required">
+                    front camera is required
+                  </div>
+                  <div *ngIf="orderForm.get('frontCam')?.errors?.pattern">
+                        Number only
+                  </div>
+                </div>
+
+                <!-- Back Camera -->
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><strong>Back Camera</strong></span>
+                  </div>
+                  <input
+                    class="form-control" type="text" name="backCam"
+                    placeholder="40Mp" formControlName="backCam">
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="orderForm.get('backCam')?.invalid &&
+                  (orderForm.get('backCam')?.dirty ||
+                  orderForm.get('backCam')?.touched)">
+                  <div *ngIf="orderForm.get('backCam')?.errors?.required">
+                    back camera is required
+                  </div>
+                  <div *ngIf="orderForm.get('backCam')?.errors?.pattern">
+                        Number only
+                  </div>
+                </div>
+
+                <!-- Battery -->
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><strong>Battary</strong></span>
+                  </div>
+                  <input
+                    class="form-control" type="text" name="battery"
+                    placeholder="4000MA" formControlName="battery">
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="orderForm.get('battery')?.invalid &&
+                  (orderForm.get('battery')?.dirty ||
+                  orderForm.get('battery')?.touched)">
+                  <div *ngIf="orderForm.get('battery')?.errors?.required">
+                    battery is required
+                  </div>
+                  <div *ngIf="orderForm.get('battary')?.errors?.pattern">
+                        Number only
+                  </div>
+                </div>
+              </div>
+
+              </div>
+              <!-- Stock -->
+              <div class="col">
+                <label class="form-label"><strong>Stock </strong> </label>
+                <div *ngFor="let item of _Stock;let i=index"
+                  formArrayName="stock">
+
+                  <div class="input-group mb-3" [formGroupName]="i">
+                    <button
+                      class="btn btn-danger btn-sm"
+                      (click)="deleteProductFromStock(i)" *ngIf="_Stock.length>
+                      1" >-</button>
+
+                    <!-- color -->{{i}}
+                    <div class="input-group input-group-sm mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><strong>Color</strong></span>
+                      </div>
+                      <input
+                        class="form-control" type="text" name="color"
+                        placeholder="black" formControlName="color">
+                    </div>
+                    <div class="alert alert-danger"
+                      *ngIf="_Stock[i].get('color')?.invalid &&
+                      (_Stock[i].get('color')?.dirty ||
+                      _Stock[i].get('color')?.touched)">
+                      <div *ngIf="_Stock[i].get('color')?.errors?.required">
+                        color is required
+                      </div>
+                    </div>
+
+                    <!-- Ram -->
+                    <div class="input-group input-group-sm mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><strong>Ram</strong></span>
+                      </div>
+                      <input
+                        class="form-control" type="text" name="ram"
+                        placeholder="4GB" formControlName="ram">
+                    </div>
+                     <div class="alert alert-danger"
+                      *ngIf="_Stock[i].get('ram')?.invalid &&
+                      (_Stock[i].get('ram')?.dirty ||
+                      _Stock[i].get('ram')?.touched)">
+                      <div *ngIf="_Stock[i].get('ram')?.errors?.required">
+                        ram is required
+                      </div>
+                       <div *ngIf="_Stock[i].get('ram')?.errors?.pattern">
+                        Number only
+                      </div>
+                    </div>
+
+                    <!-- Memory -->
+                    <div class="input-group input-group-sm mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><strong>Memory</strong></span>
+                      </div>
+                      <input
+                        class="form-control" type="text" name="memory"
+                        placeholder="120GB" formControlName="memory">
+                    </div>
+                     <div class="alert alert-danger"
+                      *ngIf="_Stock[i].get('memory')?.invalid &&
+                      (_Stock[i].get('memory')?.dirty ||
+                      _Stock[i].get('memory')?.touched)">
+                      <div *ngIf="_Stock[i].get('memory')?.errors?.required">
+                        memory is required
+                      </div>
+                       <div *ngIf="_Stock[i].get('memory')?.errors?.pattern">
+                        Number only
+                      </div>
+                    </div>
+
+                      <!-- Price -->
+                    <div class="input-group input-group-sm mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><strong>Price</strong></span>
+                      </div>
+                      <input
+                        class="form-control" type="text" name="price"
+                        placeholder="120GB" formControlName="price">
+                    </div>
+                     <div class="alert alert-danger"
+                      *ngIf="_Stock[i].get('price')?.invalid &&
+                      (_Stock[i].get('price')?.dirty ||
+                      _Stock[i].get('price')?.touched)">
+                      <div *ngIf="_Stock[i].get('price')?.errors?.required">
+                        price is required
+                      </div>
+                       <div *ngIf="_Stock[i].get('price')?.errors?.pattern">
+                        Number only
+                      </div>
+                    </div>
+
+
+                    <!-- Image -->
+                     <div class="input-group input-group-sm mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><strong>Image Link</strong></span>
+                      </div>
+                      <input
+                        class="form-control" type="text" name="image"
+                        placeholder="image" formControlName="image">
+                    </div>
+
+                    <!-- Stock -->
+                    <div class="input-group input-group-sm mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><strong>Stock</strong></span>
+                      </div>
+                      <input
+                        class="form-control" type="text" name="stock"
+                        placeholder="stock" formControlName="stock">
+                    </div>
+                      <div class="alert alert-danger"
+                      *ngIf="_Stock[i].get('stock')?.invalid &&
+                      (_Stock[i].get('stock')?.dirty ||
+                      _Stock[i].get('stock')?.touched)">
+                      <div *ngIf="_Stock[i].get('stock')?.errors?.required">
+                        stock is required
+                      </div>
+                       <div *ngIf="_Stock[i].get('stock')?.errors?.pattern">
+                        Number only
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <button class="btn btn-primary my-2 btn-sm"
+                  (click)="addNewProductToStock()">+</button>
+              </div>
+
+            </div>
+          </div>
+          <button class="btn btn-success m-1 btn-sm"
+            (click)="handleSubmit()">Save</button>
+          <button class="btn btn-danger btn-sm"
+            (click)="handleCancel($event)">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg navbar fixed-top navbar">
+  <div class="container">
+    <a class="navbar-brand waves-effect" routerLink="/">
+      <strong class="logo">Mobi-star</strong>
+    </a>
+
+    <div class="collapse navbar-collapse"id="navbarSupportedContent">
+
+
+      <ul class="d-flex flex-row bd-highlight mb-2 unlisted">
+        <li class="nav-item  bd-highlight list-unstyled">
+          <a class="nav-link waves-effect" routerLink="/aboutUs">AboutUs
+
+          </a>
+        </li>
+        <li class="nav-item  bd-highlight list-unstyled">
+          <div class="nav-item dropdown pl-2 mb-2 mb-md-0 d-flex me-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Companies
+            </a>
+            <ul class="dropdown-menu text-center"
+              aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/company?name=apple">Apple</a></li>
+              <li><a class="dropdown-item"  href="/company?name=samsung">Samsung</a></li>
+              <li><a class="dropdown-item"  href="/company?name=huawei">Huawei</a></li>
+              <li><a class="dropdown-item"  href="/company?name=xiaomi">Xiaomi</a></li>
+              <li><a class="dropdown-item"  href="/company?name=oppo">Oppo</a></li>
+              <li><a class="dropdown-item"  href="/company?name=nokia">Nokia</a></li>
+            </ul>
+          </div>
+        </li>
+          <li class="nav-item  bd-highlight list-unstyled">
+          <a class="nav-link waves-effect" routerLink="/compare">
+           Compare
+          </a>
+        </li>
+         <li class="nav-item  bd-highlight list-unstyled">
+          <a class="nav-link waves-effect" routerLink="/contact">Contact
+
+          </a>
+        </li>
+
+        <li class="nav-item bd-highlight list-unstyled"*ngIf="!_user.isLogin">
+          <a routerLink="user/login" class="nav-link waves-effect">Login</a>
+        </li>
+
+      </ul>
+
+      <div class="d-flex flex-row-reverse bd-highlight">
+
+        <div class="p-2 bd-highlight">
+          <div class="nav-item dropdown pl-2 mb-2 mb-md-0 d-flex me-2"
+            *ngIf="this._user.isLogin">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img
+                src={{image}}
+                class="profileImage">
+            </a>
+            <ul class="dropdown-menu text-center"
+              aria-labelledby="navbarDropdown">
+              <h3 style="color: rgb(71, 61, 4);font-weight: bold;">
+                {{this._user.user?.name}}</h3>
+              <li><a class="dropdown-item" style="cursor: pointer;" routerLink="user/profile">Profile</a></li>
+              <li><a class="dropdown-item" style="cursor: pointer;" (click)="logout($event)">Logout</a></li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="p-2 bd-highlight">
+          <form class="d-flex mr-auto" [formGroup]="searchForm"
+            (ngSubmit)="handleSearch()">
+            <input class="form-control me-2" type="search" placeholder="Search"
+              aria-label="Search" formControlName="search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="p-2 bd-highlight">
+        <span routerLink="/user/shoppingCart" style="cursor: pointer;" class=" text-warning" >
+          <img class=" cartSpan" src="../../../assets/img/carts.png">
+          <span class="counter" *ngIf="counter>0">{{counter}}</span>
+        </span>
+    </div>
+
+    <button class="navbar-toggler m-2" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"><i class="fas fa-sliders-h"
+          style="color: rgb(186, 187, 189);"></i></span>
+    </button>
+  </div>
+</nav>

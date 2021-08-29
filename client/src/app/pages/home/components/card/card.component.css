@@ -1,0 +1,46 @@
+.card{
+  border: rgb(236, 235, 235) 1px solid;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 1px 1px rgb(219, 219, 219);
+  overflow: hidden;
+}
+
+.card .img{
+width: 100px;
+height: 150px;
+cursor: pointer;
+}
+
+.card .img:hover{
+ transition: 0.5ms;
+ zoom: 150%;
+}
+.hr{
+  overflow: visible;
+  /* For IE */
+  padding: 0;
+  border: none;
+  border-top: medium double #333;
+  color: #333;
+  text-align: center;
+
+}
+.hr:after {
+  content: "§";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: white;
+}
+.cartIcon {
+  margin-top: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgb(84, 85, 83);
+}
+.cartIcon:hover {
+  color: rgb(136, 158, 13);
+}

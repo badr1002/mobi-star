@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "6080c510-5765-47db-9f6f-24c3104dd6d2",
+		"name": "ROLE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADD ROLE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"role\":\"suberAdmin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/role/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"role",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

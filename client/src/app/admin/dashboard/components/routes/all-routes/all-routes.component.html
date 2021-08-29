@@ -1,0 +1,150 @@
+
+<div id="wrapper" style="margin-top: -60px;">
+  <app-sidebar></app-sidebar>
+  <div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+      <app-dash-nav></app-dash-nav>
+      <div class="container-fluid">
+        <div class="card shadow">
+          <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold">Routes Info</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-md-6 text-nowrap">
+                <div id="dataTable_length" class="dataTables_length"
+                  aria-controls="dataTable">
+                  <div class="row">
+                    <div class="col">
+                      <label class="form-label">Show&nbsp;
+                        <select class="d-inline-block form-select
+                          form-select-sm"
+                          [(ngModel)]="selectedLimit">
+                          <option [value]='limit' *ngFor="let limit of limits">
+                            {{limit}}
+                          </option>
+                        </select>
+                        &nbsp;
+                      </label>
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-outline-success"
+                        (click)="addRoute()">+</button>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="text-md-end dataTables_filter"
+                  id="dataTable_filter"><label class="form-label"><input
+                      type="search" class="form-control form-control-sm"
+                      aria-controls="dataTable" placeholder="Search"  [(ngModel)]="search_term" (ngModelChange)="handleSearch()"></label></div>
+              </div>
+            </div>
+            <div class="table-responsive table mt-2" id="dataTable"
+              role="grid"
+              aria-describedby="dataTable_info">
+              <div class="alert alert-primary m-2" *ngIf="!loading">Loading...</div>
+              <app-add-route (messageEvent)="receiveMessage($event)"
+                *ngIf='addRouteForm'></app-add-route>
+              <div class="form-control-user alert alert-{{alert}}" *ngIf="msg">
+                {{msg}}
+              </div>
+
+              <table class="table my-0" id="dataTable" *ngIf="loading">
+                <div id="popUp" *ngIf="addRoleFormStatus"></div>
+                <thead>
+                  <tr>
+                    <th>Url</th>
+                    <th>Delete</th>
+                    <th>Add Role</th>
+                    <th>Roles</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <div class="alert alert-success addFormData" *ngIf="addRoleFormStatus" >
+                    <form class="form-group" [formGroup]="newRoleControl"
+                      (ngSubmit)='handleAddRole()'>
+                      <label class="form-label" for="@role"><strong>New Role</strong></label>
+                      <input autofocus class="form-control"
+                        formControlName='role' id="@role"
+                        type="text" placeholder="New role">
+                      <button type="submit" class="btn btn-success
+                        btn-sm m-2">Save</button>
+                         <button class="btn btn-warning btn-sm m-2"
+                        (click)=" cancelAddForm() "
+                        >Cancel</button>
+                    </form>
+                  </div>
+                  <tr *ngFor="let item of routes | paginate: { itemsPerPage:
+                    selectedLimit, currentPage: p }; let i=index"
+                    style="border-bottom:rgb(207, 202, 202) 1px solid">
+                    <td class="btn m-2 btn-outline-primary">{{item.url}}</td>
+                    <td>
+                      <button class="btn btn-danger btn-sm m-2"
+                        (click)="deleteRoute($event,item)">X</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-primary btn-sm m-2"
+                        (click)="addFormStatus(item._id)"
+                        *ngIf="!addRoleFormStatus">+</button>
+
+                    </td>
+                    <td>
+                      <ul *ngFor="let role of item.roles; let i=index">
+                        <li class="alert alert-primary list-unstyled">
+
+                          <tabset [justified]="true">
+                            <tab heading="Role">
+                              <span class="role">{{role}}</span>
+                              <button class="btn btn-danger btn-sm m-2"
+                                (click)="deleteRole($event,item._id,role)">X</button>
+                            </tab>
+                            <tab heading="Edit">
+                              <form class="form-group">
+                                <input autofocus class="form-control"
+                                  type="text" value="{{role}}">
+                                <button type="submit" class="btn btn-success
+                                  btn-sm m-2"
+                                  (click)="editRole($event,role._id)">Save</button>
+                              </form>
+                            </tab>
+                          </tabset>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot></tfoot>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-md-6 align-self-center">
+                <p id="dataTable_info" class="dataTables_info" role="status"
+                  aria-live="polite">Showing {{p}} to {{selectedLimit}} of
+                  {{routes.length}}</p>
+              </div>
+
+              <div class="col-md-6">
+                <nav class="d-lg-flex justify-content-lg-end
+                  dataTables_paginate
+                  paging_simple_numbers">
+
+                  <div class="pagination">
+                    <pagination-controls (pageChange)="p= $event"></pagination-controls>
+                  </div>
+
+                </nav>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

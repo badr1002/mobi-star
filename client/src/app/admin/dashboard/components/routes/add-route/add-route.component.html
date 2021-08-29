@@ -1,0 +1,48 @@
+ <div class="row">
+  <div class="col">
+    <div class="card shadow mb-3">
+      <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Add Route</p>
+      </div>
+      <div class="card-body">
+
+        <div [formGroup]="orderForm">
+          <div class="container">
+            <div class="form-control-user alert alert-{{alert}}" *ngIf="msg">
+              {{msg}}
+            </div>
+            <div class="row">
+              <div class="col">
+                <label class="form-label" for="url"><strong>URL</strong></label>
+                <input
+                  class="form-control" type="text" id="url"
+                  placeholder="url" formControlName="url">
+              </div>
+              <div class="col">
+                <div formArrayName="roles"
+                  *ngFor="let item of _Roles; let i= index;">
+                  <label class="form-label"><strong>Role</strong></label>
+                  <div [formGroupName]="i" class="input-group mb-3">
+                    <input class="form-control" type="text"
+                      formControlName="role"
+                      placeholder="Role">
+                    <button class="btn btn-danger btn-sm"
+                      (click)="deleteRole(i)" *ngIf="_Roles.length> 1" >-</button>
+                  </div>
+                </div>
+                <button class="btn btn-primary my-2 btn-sm"
+                  (click)="addRole()">+</button>
+              </div>
+
+            </div>
+          </div>
+          <button class="btn btn-success m-1 btn-sm"
+            (click)="handleSubmit()">Save</button>
+          <button class="btn btn-danger btn-sm"
+            (click)="handleCancel($event)">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
