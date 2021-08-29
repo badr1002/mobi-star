@@ -9,13 +9,13 @@ class Helper {
         service: "gmail",
         host: "smtp.gmail.com",
         auth: {
-          user: "badrhelal333@gmail.com",
-          pass: "B0R1H2L3M4K5@",
+          user: `${process.env.EMAIL}`,
+          pass: `${process.env.PASSWORD}`,
         },
       })
     );
     let mailOptions = {
-      from: "badrhelal333@gmail.com",
+      from: `${process.env.EMAIL}`,
       to: email,
       subject: "activate your account",
       text: "activate your account open this link",
@@ -34,13 +34,13 @@ class Helper {
         service: "gmail",
         host: "smtp.gmail.com",
         auth: {
-          user: "badrhelal333@gmail.com",
-          pass: "B0R1H2L3M4K5@",
+          user: `${process.env.EMAIL}`,
+          pass: `${process.env.PASSWORD}`,
         },
       })
     );
     let mailOptions = {
-      from: "badrhelal333@gmail.com",
+      from: `${process.env.EMAIL}`,
       to: email,
       subject: "Set new password",
       text: "set new password copy this code",
@@ -59,17 +59,17 @@ class Helper {
         service: "gmail",
         host: "smtp.gmail.com",
         auth: {
-          user: "badrhelal333@gmail.com",
-          pass: "B0R1H2L3M4K5@",
+          user: `${process.env.EMAIL}`,
+          pass: `${process.env.PASSWORD}`,
         },
       })
     );
     let mailOptions = {
       from: `${name} <${email}>`,
-      to: "badrhelal333@gmail.com",
+      to: `${process.env.EMAIL}`,
       subject: sub,
       text: message,
-      html: `<b>${message}</b>`
+      html: `<b>${message}</b>`,
     };
 
     await transporter.sendMail(mailOptions, function (error, info) {
