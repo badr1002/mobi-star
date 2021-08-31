@@ -36,7 +36,7 @@ export class UserService {
   }
 
   logout() {
-    return this._http.patch(`${this.url}/user/logout`, {});
+    return this._http.patch(`${this.url}/user/logout`,{});
   }
   forgetPassword(data: any): Observable<any> {
     return this._http.post(`${this.url}/user/forget/password`, data);

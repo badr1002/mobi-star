@@ -100,8 +100,8 @@ class User {
   static logout = async (req, res) => {
     try {
       const user = req.user;
-      user.tokens.splice(req.headers.Authorization, 1);
-      user.macs.splice(req.headers.Mac, 1);
+      user.tokens = user.tokens.filter(e=> e.token != req.headers.Authorization)
+      user.macs = user.tokens.filter(e=> e.mac != req.headers.Mac)
       await user.save();
       res.status(200).send({
         apiStatus: true,

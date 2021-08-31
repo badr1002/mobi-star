@@ -44,16 +44,16 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
     event.preventDefault();
     if (confirm('Are you sure to logout!')) {
       this._user.logout().subscribe(
-        (res) => {
-          sessionStorage.clear();
-          localStorage.clear();
-          this._user.isLogin = false;
-          this._user.user = false;
-        },
-        (err) => {
-          return;
-        },
-        () => this._route.navigateByUrl('user/login')
+        (res:any) => {
+          if (res.apiStatus) {
+            sessionStorage.clear();
+            localStorage.clear();
+            this._user.isLogin = false;
+            this._user.isAdmin = false;
+            this._user.user = false;
+            this._route.navigateByUrl('user/login');
+         }
+        }
       );
     }
   }

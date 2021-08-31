@@ -65,10 +65,14 @@ export class ReportsComponent implements OnInit {
     return this.stock.reduce((a, b) => a + b);
   }
   get _totalPriceStock() {
-    return this.totalPriceStock.reduce((a, b) => a + b);
+    if (this.totalPriceStock.length > 0) {
+      return this.totalPriceStock.reduce((a, b) => a + b);
+    }
   }
   get _totalPaid() {
-    return this.totalPaided.reduce((a, b) => a + b);
+    if (this.totalPaided.length > 0) {
+      return this.totalPaided.reduce((a, b) => a + b);
+    }
   }
 
   ngOnInit(): void {}

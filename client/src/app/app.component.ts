@@ -7,26 +7,25 @@ import { Component, Input } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Mobi-star';
   msg: any = true;
   arrowStatus: any = true;
   constructor(public _user: UserService, private _route: Router) {
-    _user.profile().subscribe(
-      (res: any) => {
-        if (res.apiStatus) {
-          this.msg = res.data.activate;
-          this._user.user = res.data;
-          this._user.isLogin = true;
-        }
+    _user.profile().subscribe((res: any) => {
+      if (res.apiStatus) {
+        this.msg = res.data.activate;
+        this._user.user = res.data;
+        this._user.isLogin = true;
       }
-    );
+    });
 
     window.onscroll = () => {
       if (window.pageYOffset > 200) this.arrowStatus = true;
       else this.arrowStatus = false;
     };
   }
+
   goUpHandler = (e: any) => {
     e.preventDefault();
     let p = window.pageYOffset;

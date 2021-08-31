@@ -15,7 +15,7 @@ checkUser = (token, decodedToken,mac) => {
 checkPermition = async (url,userRole) => {
     let route = await routeModel.findOne({ url })
     if(!route) throw new Error("ERROR 404! Not found this page")
-    let role = await route.roles.find(r => r == userRole)
+    const role = await route.roles.find(r => r == userRole)
     if(!role) throw new Error("you don't have a permition to access this page");
 }
 
@@ -30,7 +30,6 @@ auth = async (req, res, next) => {
         // check user    
         let user = await checkUser(token, decodedToken, mac)
         if (!user) throw new Error('user is not found')
-
         // check permition   
         await checkPermition(req.originalUrl, user.role)
 

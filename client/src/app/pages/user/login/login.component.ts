@@ -44,15 +44,12 @@ export class LoginComponent implements OnInit {
             }
             sessionStorage.setItem('token', res.data.token);
             sessionStorage.setItem('mac', res.data.mac);
-            this._user.isLogin = true;
             if (
               res.data.user.role == '60f0d888dee10d0878c99803' ||
               res.data.user.role == '60f0d892dee10d0878c99805'
             ) {
-              this._user.isAdmin=true
               this._roter.navigateByUrl('/dashboard');
             } else {
-              this._user.isAdmin = false;
               this._roter.navigateByUrl('/');
             }
           }
