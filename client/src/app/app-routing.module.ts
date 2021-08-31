@@ -1,7 +1,6 @@
 import { ComparsionComponent } from './pages/comparsion/comparsion.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
-import { Auth2Guard } from './guards/auth2.guard';
 import { SingleCompanyComponent } from './pages/home/companies/single-company/single-company.component';
 import { UserSingleProductComponent } from './pages/product/user-single-product/user-single-product.component';
 import { ShoppingcartComponent } from './pages/shoppingcart/shoppingcart.component';
@@ -57,7 +56,7 @@ const routes: Routes = [
       { path: 'allUsers', component: AllUsersComponent },
       { path: 'allProducts', component: AllProductsComponent },
       { path: 'product', component: SingleProductComponent },
-      { path: 'allRoutes', component: AllRoutesComponent },
+      { path: 'allRoutes', component: AllRoutesComponent},
       { path: 'allOrders', component: OrdersComponent },
     ],
     canActivate: [AdminGuard],

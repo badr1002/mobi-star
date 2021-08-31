@@ -19,7 +19,7 @@ class Helper {
       to: email,
       subject: "activate your account",
       text: "activate your account open this link",
-      html: `<p>Click <a href="http://localhost:5000/api/user/active/${key}">here</a> to active your acount</p>`,
+      html: `<p>Click <a href="${process.env.BABEL_ENV}/api/user/active/${key}">here</a> to active your acount</p>`,
     };
 
     await transporter.sendMail(mailOptions, function (error, info) {

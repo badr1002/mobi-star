@@ -31,8 +31,8 @@ export class AllRoutesComponent implements OnInit, AfterContentChecked {
     role: new FormControl('', Validators.required),
   });
 
-  constructor(private _user: RouteService) {
-    this._user.getAllRoutes().subscribe(
+  constructor(private _route: RouteService) {
+    this._route.getAllRoutes().subscribe(
       (res) => {
         this.routes = res.data;
         this.copyRoutes = this.routes;
@@ -78,7 +78,7 @@ export class AllRoutesComponent implements OnInit, AfterContentChecked {
   deleteRoute(e: any, route: any) {
     e.preventDefault();
     if (confirm(`Do you really want to delete this route(${route.url})`)) {
-      this._user.deleteRoute(route._id).subscribe(
+      this._route.deleteRoute(route._id).subscribe(
         (res): any => {
           if (res.apiStatus) {
             this.alert = 'success';
@@ -100,7 +100,7 @@ export class AllRoutesComponent implements OnInit, AfterContentChecked {
     let thisRoute = this.routes.find((item) => item._id == this.id);
     let newRoutes: any = this.routes;
     let updateRoles: any = thisRoute.roles.push(this._newRole);
-    this._user.addRole(this.id, this._newRole).subscribe(
+    this._route.addRole(this.id, this._newRole).subscribe(
       (res): any => {
         if (res.apiStatus) {
           this.alert = 'success';
@@ -129,7 +129,7 @@ export class AllRoutesComponent implements OnInit, AfterContentChecked {
     let updateRoles: any = thisRoute.roles.filter((e: any) => e !== role);
     if (thisRoute.roles.length > 1) {
       if (confirm(`Do you really want to delete this role(${role}) `)) {
-        this._user.deleteRole(id, role).subscribe(
+        this._route.deleteRole(id, role).subscribe(
           (res): any => {
             if (res.apiStatus) {
               this.alert = 'success';

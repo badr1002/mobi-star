@@ -89,6 +89,7 @@ export class ShoppingcartComponent implements OnInit {
             (res) => {
               if (res.apiStatus) {
                 this._order.orderCounter = 0;
+                this.completedOrders = this.orders
                 this.orders = [];
               }
             },

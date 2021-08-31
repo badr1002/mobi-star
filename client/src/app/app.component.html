@@ -1,6 +1,6 @@
 <app-navbar *ngIf="!_user.isAdmin"></app-navbar>
 <router-outlet>
-<h1 *ngIf="!msg" class="alert alert-danger text-center">Check your email we send you activation link!</h1>
+<h1 *ngIf="!msg && !_user.isAdmin" class="alert alert-danger text-center">Check your email we send you activation link!</h1>
 </router-outlet>
  <span class="border rounded d-inline mb-5 scroll-to-top"
  *ngIf="arrowStatus"

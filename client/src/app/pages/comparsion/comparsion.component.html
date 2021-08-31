@@ -8,6 +8,7 @@
       <!--mobiles[0] Datiales-->
       <div class="col-lg-6 col-sm-12 detailes" *ngIf="mobiles[0]">
         <h3 class="badge bg-secondary">First Mobile</h3>
+        <button class="btn btn-danger btn-sm ms-5" (click)="handleDelete(0)">X</button>
         <div class="row">
           <table class="table">
             <tbody>
@@ -58,6 +59,7 @@
       <!--mobiles[1] Datiales-->
       <div class="col-lg-6 col-sm-12 detailes" *ngIf="mobiles[1]">
         <h3 class="badge bg-secondary">Second Mobile</h3>
+        <button class="btn btn-danger btn-sm ms-5" (click)="handleDelete(1)">X</button>
         <div class="row">
           <table class="table">
             <tbody>

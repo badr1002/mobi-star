@@ -2,13 +2,14 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  url = 'https://mobi-star.herokuapp.com/api';
+  url = `http://localhost:5000/api`;
   isLogin = false;
   isAdmin = false;
   user: any;
@@ -64,5 +65,8 @@ export class UserService {
 
   addToComparsion(id: any): Observable<any> {
     return this._http.post(`${this.url}/user/addToComparsion`, { id });
+  }
+  deleteFromComparsion(id: any): Observable<any> {
+    return this._http.patch(`${this.url}/user/deleteFromComparsion`, { id });
   }
 }

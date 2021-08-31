@@ -9,10 +9,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private _user: UserService,
-    private _roter: Router,
-  ) {}
+  constructor(private _user: UserService, private _roter: Router) {}
 
   ngOnInit(): void {}
 
@@ -40,14 +37,25 @@ export class LoginComponent implements OnInit {
     if (this.login.valid) {
       this._user.login(this.login.value).subscribe(
         (res) => {
-          if (this.saveMe?.valid) {
-            localStorage.setItem("token", res.data.token)
-            localStorage.setItem('mac', res.data.mac);
+          if (res.apiStatus) {
+            if (this.saveMe?.valid) {
+              localStorage.setItem('token', res.data.token);
+              localStorage.setItem('mac', res.data.mac);
+            }
+            sessionStorage.setItem('token', res.data.token);
+            sessionStorage.setItem('mac', res.data.mac);
+            this._user.isLogin = true;
+            if (
+              res.data.user.role == '60f0d888dee10d0878c99803' ||
+              res.data.user.role == '60f0d892dee10d0878c99805'
+            ) {
+              this._user.isAdmin=true
+              this._roter.navigateByUrl('/dashboard');
+            } else {
+              this._user.isAdmin = false;
+              this._roter.navigateByUrl('/');
+            }
           }
-          sessionStorage.setItem('token', res.data.token);
-          sessionStorage.setItem('mac', res.data.mac);
-          this._user.isLogin = true;
-          this._roter.navigateByUrl('/dashboard');
         },
         (err) => {
           this._user.isLogin = false;

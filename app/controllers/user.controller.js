@@ -54,10 +54,11 @@ class User {
       if (!user.activate) {
         user.activeKey = user._id;
         hepler.sendMailerToActiveAcoount(user.activeKey, user.email);
-      } else if (!user.userStatus)
+      } else if (!user.userStatus) {
         throw new Error(
           "This account are blocked! you can contact with us to reEnable it!"
         );
+      }
       await user.save();
       let token = await user.generateToken();
       let mac = await user.generateMac();
@@ -81,12 +82,12 @@ class User {
         activeKey: req.params.key,
         activate: false,
       });
-      if (!user) throw new Error("no user activate");
+      if (!user) throw new Error("user not found!");
       user.activeKey = "";
       user.activate = true;
       user.updatedAt = Date.now();
       await user.save();
-      res.status(200).redirect("https://mobi-star.herokuapp.com/");
+      res.status(200).redirect(process.env.BABEL_ENV);
     } catch (e) {
       res.status(500).send({
         apiStatus: false,
@@ -340,7 +341,27 @@ class User {
     } catch (e) {
       res.status(500).send({
         apiStatus: false,
-        msg: "add product to comparsion found!",
+        msg: "add product to comparsion faild!",
+        data: e.message,
+      });
+    }
+  };
+
+  static deleteFromComparsion = async (req, res) => {
+    try {
+      const user = await userModel.findById(req.user._id);
+      if (!user) throw new Error("user not found!");
+      user.comparsion = user.comparsion.filter(m => m._id != req.body.id);
+      await user.save();
+      res.status(200).send({
+        apiStatus: true,
+        msg: "delete product from comparsion successfully",
+        data: {},
+      });
+    } catch (e) {
+      res.status(500).send({
+        apiStatus: false,
+        msg: "delete product from comparsion faild!",
         data: e.message,
       });
     }

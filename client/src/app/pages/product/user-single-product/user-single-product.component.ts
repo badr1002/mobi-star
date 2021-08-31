@@ -80,22 +80,16 @@ export class UserSingleProductComponent implements OnInit {
       }
     });
   }
-
+  x() {
+  alert('')
+}
   addToCompare(id: any) {
-    for (let item of this._user.comparsion) {
-      if (item.product_id == id) {
-        this.alert = 'danger';
-        this.msg = 'already exist!';
-        setTimeout(() => {
-          this.msg = '';
-        }, 2000);
-      }
-      else if (this._user.comparsion.length >= 2) {
-        this._user.comparsion.pop();
-      }
       this._user.addToComparsion(id).subscribe(
         (res) => {
           if (res.apiStatus) {
+            if (this._user.comparsion.length >= 2) {
+              this._user.comparsion.pop();
+            }
             this._user.comparsion.push(this.mobile);
             this.alert = 'success';
             this.msg = 'added to comparsion successfully!';
@@ -112,7 +106,7 @@ export class UserSingleProductComponent implements OnInit {
           }, 2000);
         }
       );
-    }
+
   }
   ngOnInit(): void {}
 }

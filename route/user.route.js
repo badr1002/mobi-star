@@ -26,6 +26,8 @@ router.patch("/edit", auth, UserControlles.editProfile);
 router.patch("/enableUser",auth, UserControlles.enableUser);
 router.patch("/disableUser", auth, UserControlles.disableUser);
 router.post("/addToComparsion", auth, UserControlles.addToComparsion);
+router.patch("/deleteFromComparsion", auth, UserControlles.deleteFromComparsion);
+
 const path = require("path");
 const link = path.join(
   __dirname,

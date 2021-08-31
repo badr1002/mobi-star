@@ -18,11 +18,7 @@ export class AppComponent {
           this.msg = res.data.activate;
           this._user.user = res.data;
           this._user.isLogin = true;
-          this._user.comparsion = res.data.comparsion;
         }
-      },
-      (e) => {
-        return false;
       }
     );
 
