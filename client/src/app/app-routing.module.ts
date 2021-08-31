@@ -11,7 +11,6 @@ import { AllProductsComponent } from './admin/dashboard/components/products/all-
 import { AllUsersComponent } from './admin/dashboard/components/users/all-users/all-users.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SetPasswordComponent } from './pages/user/helper/set-password/set-password.component';
-import { ActivateUserComponent } from './pages/user/helper/activate-user/activate-user.component';
 import { LoginComponent } from './pages/user/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -45,11 +44,6 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'activate',
-        component: ActivateUserComponent,
         canActivate: [AuthGuard],
       },
       { path: 'forgetPassword', component: SetPasswordComponent },

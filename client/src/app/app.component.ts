@@ -9,18 +9,17 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'Mobi-star';
+  msg: any = true;
   arrowStatus: any = true;
   constructor(public _user: UserService, private _route: Router) {
     _user.profile().subscribe(
       (res: any) => {
         if (res.apiStatus) {
+          this.msg = res.data.activate;
           this._user.user = res.data;
+          this._user.isLogin = true;
           this._user.comparsion = res.data.comparsion;
-          console.log(this._user.isAdmin);
-
-        };
-        if (!res.data.activate) this._route.navigateByUrl('user/activate');
-        return;
+        }
       },
       (e) => {
         return false;
@@ -32,7 +31,7 @@ export class AppComponent {
       else this.arrowStatus = false;
     };
   }
-  goUpHandler = (e:any) => {
+  goUpHandler = (e: any) => {
     e.preventDefault();
     let p = window.pageYOffset;
     window.scrollTo(0, (p = 0));

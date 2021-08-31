@@ -19,6 +19,8 @@ export class AuthGuard
       .toPromise()
       .then((res): any => {
         if (res.apiStatus) {
+           this._user.user = res.data;
+           this._user.isLogin = true;
           return true;
         } else {
           this._route.navigateByUrl('/user/login')

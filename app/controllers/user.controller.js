@@ -7,12 +7,11 @@ class User {
     try {
       //  const { page = 1, limit = 10 } = req.query;
       const users = await userModel.find();
-      const allUsers = await userModel.find();
       res.status(200).send({
         apiStatus: true,
         msg: "Found all users successfully",
         data: {
-          total: allUsers.length,
+          total: users.length,
           users,
         },
       });
@@ -29,9 +28,12 @@ class User {
     try {
       const checkEmail = await userModel.findOne({ email: req.body.email });
       if (checkEmail) throw new Error("this email is already exist!");
-      // const checkMobile = await userModel.findOne({ mobile: req.body.mobile });
-      // if (checkMobile) throw new Error("this mobile is used before!");
-      await new userModel(req.body);
+      const checkMobile = await userModel.findOne({ mobile: req.body.mobile });
+      if (checkMobile) throw new Error("this mobile is used before!");
+      // console.log(req.body);
+
+      const user = await userModel(req.body);
+      await user.save();
       res.status(200).send({
         apiStatus: true,
         msg: "registered successfully",
@@ -45,8 +47,6 @@ class User {
       });
     }
   };
-
-  
 
   static login = async (req, res) => {
     try {
@@ -84,6 +84,7 @@ class User {
       if (!user) throw new Error("no user activate");
       user.activeKey = "";
       user.activate = true;
+      user.updatedAt = Date.now();
       await user.save();
       res.status(200).redirect("https://mobi-star.herokuapp.com/");
     } catch (e) {
@@ -179,6 +180,7 @@ class User {
       user.mobile = data.mobile;
       user.address = data.address;
       user.about = data.about;
+      user.updatedAt = Date.now();
       await user.save();
       res.status(200).send({
         apiStatus: true,
@@ -239,7 +241,8 @@ class User {
       const valid = await bcrypt.compare(req.body.password, user.password);
       if (valid) throw new Error("User deffirant password!");
       user.password = req.body.password;
-      user.save();
+      user.updatedAt = Date.now();
+      await user.save();
       res.status(200).send({
         apiStatus: true,
         msg: "password updated successfully",
@@ -277,6 +280,7 @@ class User {
       const user = await userModel.findById(req.body.id);
       if (!user) throw new Error("user not found!");
       user.userStatus = true;
+      user.updatedAt = Date.now();
       await user.save();
       res.status(200).send({
         apiStatus: true,
@@ -297,6 +301,7 @@ class User {
       const user = await userModel.findById(req.body.id);
       if (!user) throw new Error("user not found!");
       user.userStatus = false;
+      user.updatedAt = Date.now();
       await user.save();
       res.status(200).send({
         apiStatus: true,

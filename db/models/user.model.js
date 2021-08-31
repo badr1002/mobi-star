@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const macaddress = require('macaddress');
+const mongoose = require("mongoose");
+const validator = require("validator");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const macaddress = require("macaddress");
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -60,46 +60,40 @@ const userSchema = mongoose.Schema(
   { timestamp: true }
 );
 
-
-userSchema.pre('save', async function () {
-    const user = this
-    if (user.isModified('password'))
-        user.password = await bcrypt.hash(user.password, parseInt(process.env.SALT))
-    else if (user.isModified())
-        user.updatedAt = Date.now()
+userSchema.pre("save", async function () {
+  const user = this;
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, parseFloat(process.env.SALT));
+  }
 });
 
 userSchema.statics.findUser = async (email, password) => {
-    const user = await User.findOne({ email });
-    if (!user)
-        throw new Error('email not found!')
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid)
-        throw new Error('invalid password!')
-    return user
-}
+  const user = await User.findOne({ email });
+  if (!user) throw new Error("email not found!");
+  const isValid = await bcrypt.compare(password, user.password);
+  if (!isValid) throw new Error("invalid password!");
+  return user;
+};
 
 userSchema.methods.generateToken = async function () {
-    const user = this;
-    const token = jwt.sign({_id: user._id}, process.env.JWTKEY)
-    user.tokens = user.tokens.concat({ token })
-    await user.save();
-    return token
-}
+  const user = this;
+  const token = jwt.sign({ _id: user._id }, process.env.JWTKEY);
+  user.tokens = user.tokens.concat({ token });
+  await user.save();
+  return token;
+};
 
 userSchema.methods.generateMac = async function () {
-    const user = this;
-    let mac = (await macaddress.one())
-    const oldMac = user.macs.find(m => m.mac == mac)
-    if (!oldMac) {
-        user.macs = user.macs.concat({ mac })
-        await user.save();
-        return mac
-    }
-    return mac
-}
+  const user = this;
+  let mac = await macaddress.one();
+  const oldMac = user.macs.find((m) => m.mac == mac);
+  if (!oldMac) {
+    user.macs = user.macs.concat({ mac });
+    await user.save();
+    return mac;
+  }
+  return mac;
+};
 
-
-
-const User = mongoose.model('Users', userSchema);
+const User = mongoose.model("Users", userSchema);
 module.exports = User;

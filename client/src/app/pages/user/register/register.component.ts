@@ -46,13 +46,12 @@ export class RegisterComponent implements OnInit {
   msg: any;
   handleSubmit() {
     if (this.register.valid) {
-      this._user.register(this.register.value).subscribe(
-        (res) => {},
+      this._user.register(this.register?.value).subscribe(
+        (res) => {
+          if(res.apiStatus)this._roter.navigateByUrl('/user/login');
+        },
         (err) => {
           this.msg = err.error.data;
-        },
-        () => {
-          this._roter.navigateByUrl('/user/login');
         }
       );
     }

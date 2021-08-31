@@ -47,8 +47,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('token', res.data.token);
           sessionStorage.setItem('mac', res.data.mac);
           this._user.isLogin = true;
-          
-            this._roter.navigateByUrl('/dashboard');
+          this._roter.navigateByUrl('/dashboard');
         },
         (err) => {
           this._user.isLogin = false;

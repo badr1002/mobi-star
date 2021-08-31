@@ -22,7 +22,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { UserInterceptor } from './provider/user.interceptor';
 import { SetPasswordComponent } from './pages/user/helper/set-password/set-password.component';
-import { ActivateUserComponent } from './pages/user/helper/activate-user/activate-user.component';
 import { DashNavComponent } from './admin/dashboard/layouts/dash-nav/dash-nav.component';
 import { SidebarComponent } from './admin/dashboard/layouts/sidebar/sidebar.component';
 import { ReportsComponent } from './admin/dashboard/components/reports/reports.component';
@@ -58,7 +57,6 @@ import { ComparsionComponent } from './pages/comparsion/comparsion.component';
     FooterComponent,
     Error404Component,
     SetPasswordComponent,
-    ActivateUserComponent,
     DashboardComponent,
     DashNavComponent,
     SidebarComponent,
