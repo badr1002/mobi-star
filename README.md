@@ -8,7 +8,7 @@ You can join to us to have all access and discount of our products and you can c
 Technologys
 Node, Angular, TypeScript and MongoDB
 
-Setup
+Setup <br>
 $ npm run heroku-postbuild.<br>
 $ npm install <br>
 $ npm start <br>
