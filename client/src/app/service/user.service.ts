@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
   url = `http://localhost:5000/api`;
+  activeStatus: any = true;
   isLogin = false;
   isAdmin = false;
   user: any;

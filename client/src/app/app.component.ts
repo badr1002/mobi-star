@@ -9,12 +9,11 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent{
   title = 'Mobi-star';
-  msg: any = true;
   arrowStatus: any = true;
   constructor(public _user: UserService, private _route: Router) {
     _user.profile().subscribe((res: any) => {
       if (res.apiStatus) {
-        this.msg = res.data.activate;
+        this._user.activeStatus = res.data.activate;
         this._user.user = res.data;
         this._user.isLogin = true;
       }

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/ca5a234d-4de1-4abc-a6f9-a7f26f41c4c2/resourceGroups/NetworkWatcherRG/providers/Microsoft.Web/sites/Mobi-star",
+    "appService.deploySubpath": "."
+}

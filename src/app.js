@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
-const helper = require('../app/helpers/app.helper')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 require("dotenv").config();
+const mailer = require("../app/helpers/app.sendmailer");
 
 const userRoutes = require("../route/user.route");
 const roleRoutes = require("../route/role.route");
@@ -22,12 +22,12 @@ app.use("/api/product", productRoutes);
 app.use("/api/order", orderRoutes);
 app.post('/api/contact', (req, res) => {
   try {
-     helper.sendContactMessage(
-       req.body.name,
-       req.body.email,
-       req.body.sub,
-       req.body.message
-     );
+    mailer.contact(
+      req.body.name,
+      req.body.email,
+      req.body.sub,
+      req.body.message
+    );
      res.status(200).send({
        apiStatus: true,
        msg: "send message successfully!",
