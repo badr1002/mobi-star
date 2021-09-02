@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const UserControlles = require("../app/controllers/user.controller");
 const auth = require("../app/middleware/auth");
-const upload = require("../app/middleware/uploadFile.upload");
 
 
 router.get("/allUsers", UserControlles.getAllUsers);
@@ -27,25 +26,8 @@ router.patch("/enableUser",auth, UserControlles.enableUser);
 router.patch("/disableUser", auth, UserControlles.disableUser);
 router.post("/addToComparsion", auth, UserControlles.addToComparsion);
 router.patch("/deleteFromComparsion", auth, UserControlles.deleteFromComparsion);
-
-const path = require("path");
-const link = path.join(
-  __dirname,
-  "../client/src/assets/uploads/profileImage/"
-);
-const fs = require("fs");
-router.post(
-  "/profile",
-  auth,
-  (req, res, next) => {
-    fs.unlink(link + req.user._id + "_" + req.user.image, function (err) {
-      if (err) console.error(err);
-    });
-    next();
-  },
-  upload.uploadImageProfile.single("image"),
-    UserControlles.editProfileImage
-);
+router.patch("/profileImage", auth, UserControlles.editProfileImage);
+router.patch("/deleteProfileImage", auth, UserControlles.deleteProfileImage);
 
 
 module.exports = router;

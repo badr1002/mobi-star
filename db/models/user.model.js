@@ -30,7 +30,10 @@ const userSchema = mongoose.Schema(
       },
     },
     userStatus: { type: Boolean, default: true },
-    image: { type: String, trim: true },
+    image: {
+      name: { type: String, trim: true },
+      link: { type: String, trim: true },
+    },
     address: {
       street: { type: String, trim: true },
       city: { type: String, trim: true },

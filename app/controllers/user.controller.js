@@ -100,8 +100,10 @@ class User {
   static logout = async (req, res) => {
     try {
       const user = req.user;
-      user.tokens = user.tokens.filter(e=> e.token != req.headers.Authorization)
-      user.macs = user.tokens.filter(e=> e.mac != req.headers.Mac)
+      user.tokens = user.tokens.filter(
+        (e) => e.token != req.headers.Authorization
+      );
+      user.macs = user.tokens.filter((e) => e.mac != req.headers.Mac);
       await user.save();
       res.status(200).send({
         apiStatus: true,
@@ -201,7 +203,7 @@ class User {
     try {
       const user = await userModel.findOne({ email: req.body.email });
       if (!user) throw new Error("email not found!");
-      mailer.setPass(req.body.email,user._id);
+      mailer.setPass(req.body.email, user._id);
       res.status(200).send({
         apiStatus: true,
         msg: "check your email",
@@ -260,7 +262,10 @@ class User {
 
   static editProfileImage = async (req, res) => {
     try {
-      req.user.image = req.file.originalname;
+      req.user.image = {
+        name: req.body.name,
+        link: req.body.link,
+      };
       await req.user.save();
       res.status(200).send({
         apiStatus: true,
@@ -270,7 +275,28 @@ class User {
     } catch (e) {
       res.status(500).send({
         apiStatus: false,
-        msg: "updaeted faild!",
+        msg: "updaeted image faild!",
+        data: e.message,
+      });
+    }
+  };
+
+  static deleteProfileImage = async (req, res) => {
+    try {
+      req.user.image = {
+        name: "",
+        link: "",
+      };
+      await req.user.save();
+      res.status(200).send({
+        apiStatus: true,
+        msg: "updaeted profile image successfully",
+        data: req.user.image,
+      });
+    } catch (e) {
+      res.status(500).send({
+        apiStatus: false,
+        msg: "updaeted image faild!",
         data: e.message,
       });
     }
@@ -351,7 +377,7 @@ class User {
     try {
       const user = await userModel.findById(req.user._id);
       if (!user) throw new Error("user not found!");
-      user.comparsion = user.comparsion.filter(m => m._id != req.body.id);
+      user.comparsion = user.comparsion.filter((m) => m._id != req.body.id);
       await user.save();
       res.status(200).send({
         apiStatus: true,

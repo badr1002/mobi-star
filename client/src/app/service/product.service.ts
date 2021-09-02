@@ -2,12 +2,12 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { backendUrl } from 'src/environments/backendUrl';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  url = `https://mobi-star.herokuapp.com/api`;
+  url = backendUrl;
   constructor(private _http: HttpClient, private _router: Router) {}
   getAllProducts(): Observable<any> {
     return this._http.get(`${this.url}/product/allProducts`);

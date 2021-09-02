@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ntitest-b206c": {
+      "hosting": {
+        "mobi-star": [
+          "ntitest-b206c"
+        ]
+      }
+    }
+  }
+}

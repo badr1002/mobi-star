@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
   ) {
     _user.profile().subscribe((res) => {
       if (res.apiStatus) {
-        this.image = `../../../assets/uploads/profileImage/${res.data._id}_${res.data.image}`;
+        this.image = res.data.image?.link;
       }
     });
   }

@@ -2,13 +2,13 @@ import { Router } from '@angular/router';
 import { Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { backendUrl } from 'src/environments/backendUrl';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  url = `https://mobi-star.herokuapp.com/api`;
+  url = backendUrl;
   orderCounter: number = 0;
   constructor(private _http: HttpClient, private _router: Router) {
     _http.get(`${this.url}/order/allOrders`).subscribe((res: any) => {

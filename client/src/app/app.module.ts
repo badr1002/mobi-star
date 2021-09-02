@@ -12,6 +12,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TabsModule, } from 'ngx-bootstrap/tabs';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { firebaseConfig } from '../environments/firebaseConfig';
+
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/user/login/login.component';
 import { RegisterComponent } from './pages/user/register/register.component';
@@ -81,7 +87,6 @@ import { ComparsionComponent } from './pages/comparsion/comparsion.component';
     AboutUsComponent,
     ContactComponent,
     ComparsionComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -93,6 +98,9 @@ import { ComparsionComponent } from './pages/comparsion/comparsion.component';
     NgxPaginationModule,
     TabsModule.forRoot(),
     CarouselModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
   ],
   providers: [
     CookieService,
