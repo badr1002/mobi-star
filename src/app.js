@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 require("dotenv").config();
-const mailer = require("../app/helpers/app.sendmailer");
+const mailer = require("../app/helpers/sendMailer.mailer");
 
 const userRoutes = require("../route/user.route");
 const roleRoutes = require("../route/role.route");

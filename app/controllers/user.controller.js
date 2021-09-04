@@ -1,6 +1,6 @@
 const userModel = require("../../db/models/user.model");
 const bcrypt = require("bcryptjs");
-const mailer = require("../helpers/app.sendmailer");
+const mailer = require("../helpers/sendMailer.mailer");
 
 class User {
   static getAllUsers = async (req, res) => {

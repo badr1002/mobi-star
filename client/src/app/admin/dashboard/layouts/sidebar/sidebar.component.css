@@ -1,0 +1,51 @@
+.nav-left {
+  max-width: 60px;
+}
+
+.nav-left-brand {
+  color: #fff;
+  position: relative;
+  left: -77px;
+}
+
+.left {
+  position: absolute;
+  left: 10px;
+}
+
+.toggler-left {
+  position: absolute;
+  top: 345px;
+  left: 180px
+}
+
+.toggler-right {
+  position: absolute;
+  top: 345px;
+  left: 0px;
+}
+
+@media only screen and (max-width:991px) {
+  .toggler-left {
+    position: absolute;
+    top: 393px;
+    left: 59px;
+  }
+ .nav-left-brand{
+   position: relative;
+   left: 0px;
+ }
+  .toggler-right {
+    position: absolute;
+    top: 345px;
+    left: 30px;
+  }
+ .nav-left {
+   max-width: 40px !important;
+ }
+
+  .left {
+    position: absolute;
+    left: -30px;
+  }
+}

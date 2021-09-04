@@ -8,11 +8,11 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./dash-nav.component.css'],
 })
 export class DashNavComponent implements OnInit {
-  image: any = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+  image: any;
   constructor(public _user: UserService, private _route: Router) {
     _user.profile().subscribe((res) => {
       if (res.apiStatus) {
-        this.image = `../../../assets/uploads/profileImage/${res.data._id}_${res.data.image}`;
+        this.image = _user.user.image?.link;
       }
     });
   }
