@@ -6,8 +6,8 @@ class Mailer {
     const client = new SMTPClient({
       user: process.env.EMAIL,
       password: process.env.PASSWORD,
-      host: "smtp.gmail.com",
-      port: 465,
+      host: process.env.MAIL_SMTP,
+      port: process.env.MAIL_PORT,
       ssl: true,
     });
 
@@ -33,8 +33,8 @@ class Mailer {
     const client = new SMTPClient({
       user: process.env.EMAIL,
       password: process.env.PASSWORD,
-      host: "smtp.gmail.com",
-      port: 465,
+      host: process.env.MAIL_SMTP,
+      port: process.env.MAIL_PORT,
       ssl: true,
     });
 
@@ -61,8 +61,8 @@ class Mailer {
     const client = new SMTPClient({
       user: process.env.EMAIL,
       password: process.env.PASSWORD,
-      host: "smtp.gmail.com",
-      port: 465,
+      host: process.env.MAIL_SMTP,
+      port: process.env.MAIL_PORT,
       ssl: true,
     });
 
