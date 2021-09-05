@@ -1,10 +1,23 @@
 <app-navbar *ngIf="!_user.isAdmin"></app-navbar>
 <router-outlet>
-<h1 *ngIf="!_user.activeStatus && !_user.isAdmin && _user.isLogin" class="alert alert-danger text-center">Check your email we send you activation link!</h1>
+  <h1 *ngIf="!_user.activeStatus && !_user.isAdmin && _user.isLogin"
+    class="alert alert-danger text-center">Check your email we send you
+    activation link!</h1>
 </router-outlet>
- <span class="border rounded d-inline mb-5 scroll-to-top"
- *ngIf="arrowStatus"
+<span class="border rounded d-inline mb-5 scroll-to-top"
+  *ngIf="arrowStatus"
   style="display:block; z-index:999; transition: 1.5s;cursor: pointer;"
   (click)="goUpHandler($event)"><i class="fas fa-angle-up"></i>
 </span>
 <app-footer></app-footer>
+  <div class="screen-loding" *ngIf="screenLoading">
+    <div class="sk-chase">
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+    </div>
+  </div>
+
