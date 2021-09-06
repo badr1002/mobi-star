@@ -12,13 +12,15 @@ export class AppComponent implements AfterViewInit {
   arrowStatus: any = true;
   screenLoading: any = true;
   constructor(public _user: UserService, private _route: Router) {
-    _user.profile().subscribe((res: any) => {
-      if (res.apiStatus) {
-        this._user.activeStatus = res.data.activate;
-        this._user.user = res.data;
-        this._user.isLogin = true;
-      }
-    });
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('mac')) {
+      _user.profile().subscribe((res: any) => {
+        if (res.apiStatus) {
+          this._user.activeStatus = res.data.activate;
+          this._user.user = res.data;
+          this._user.isLogin = true;
+        }
+      });
+    }
 
     window.onscroll = () => {
       if (window.pageYOffset > 200) this.arrowStatus = true;

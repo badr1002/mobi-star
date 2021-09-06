@@ -7,14 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private _user:UserService) {
- _user.profile().subscribe((res: any) => {
-   if (res.apiStatus) {
-     this._user.activeStatus = res.data.activate;
-     this._user.user = res.data;
-     this._user.isLogin = true;
-   }
- });
+  constructor(private _user: UserService) {
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('mac')) {
+      _user.profile().subscribe((res: any) => {
+        if (res.apiStatus) {
+          this._user.activeStatus = res.data.activate;
+          this._user.user = res.data;
+          this._user.isLogin = true;
+        }
+      });
+     }
   }
 
   ngOnInit(): void {}

@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/service/user.service';
 import { ProductService } from './../../service/product.service';
 import { OrderService } from './../../service/order.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,22 +17,24 @@ export class ShoppingcartComponent implements OnInit {
   totalArray: any[] = [];
   count: number[] = [];
   msg: any;
-  constructor(private _order: OrderService, private _product: ProductService) {
+  constructor(private _order: OrderService, private _product: ProductService,private _user:UserService) {
     // get Completed and non completed orders
-    _order.allOrders().subscribe((res) => {
-      if (res.apiStatus) {
-        for (let order of res.data) {
-          if (!order.status) this.orders.push(order);
-          else this.completedOrders.push(order);
-        }
-        this.orders.map((o) => {
-          this.count.push(o.quantity);
-          this.totalPrice.push(o.stock.price);
-          this.totalArray.push(o.stock.price);
-          this.total = this.totalArray.reduce((a, b) => a + b);
+    if (this._user.user) {
+        _order.allOrders().subscribe((res) => {
+          if (res.apiStatus) {
+            for (let order of res.data) {
+              if (!order.status) this.orders.push(order);
+              else this.completedOrders.push(order);
+            }
+            this.orders.map((o) => {
+              this.count.push(o.quantity);
+              this.totalPrice.push(o.stock.price);
+              this.totalArray.push(o.stock.price);
+              this.total = this.totalArray.reduce((a, b) => a + b);
+            });
+          }
         });
-      }
-    });
+     }
   }
 
   // get quantity of items for one order

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { backendUrl } from 'src/environments/backendUrl';
@@ -11,15 +11,17 @@ export class OrderService {
   url = backendUrl;
   orderCounter: number = 0;
   constructor(private _http: HttpClient, private _router: Router) {
-    _http.get(`${this.url}/order/allOrders`).subscribe((res: any) => {
-      if (res.apiStatus) {
-        res.data.map((a: any) => {
-          if (!a.status) {
-            this.orderCounter++;
-          }
-        });
-      }
-    });
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('mac')) {
+      _http.get(`${this.url}/order/allOrders`).subscribe((res: any) => {
+        if (res.apiStatus) {
+          res.data.map((a: any) => {
+            if (!a.status) {
+              this.orderCounter++;
+            }
+          });
+        }
+      });
+    }
   }
   addOrder(id: any, color: any): Observable<any> {
     return this._http.post(`${this.url}/order/addOrder`, {

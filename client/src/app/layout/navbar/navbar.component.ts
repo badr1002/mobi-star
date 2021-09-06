@@ -17,11 +17,14 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
     private _route: Router,
     public _order: OrderService
   ) {
-    _user.profile().subscribe((res) => {
-      if (res.apiStatus) {
-        this.image = res.data.image?.link;
-      }
-    });
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('mac')) {
+        _user.profile().subscribe((res) => {
+          if (res.apiStatus) {
+            this.image = res.data.image?.link;
+          }
+        });
+     }
+
   }
 
   searchForm = new FormGroup({
@@ -59,15 +62,5 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
   }
 
   ngOnInit(): void {}
-  ngOnChange() {
-    // this._order.allOrders().subscribe(
-    //   (res) => {
-    //     if (res.apiStatus) {
-    //       this.orders = res.data;
-    //     }
-    //   },
-    //   (err) => console.log(err.error)
-    // );
-    alert('');
-  }
+
 }
