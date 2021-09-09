@@ -1,16 +1,16 @@
 import { OrderService } from './service/order.service';
 import { UserService } from './service/user.service';
 import { Router } from '@angular/router';
-import { Component, Input,AfterViewInit } from '@angular/core';
+import { Component, Input,AfterViewInit, Output } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements AfterViewInit {
+  @Output() screenLoading:any = true;
   title = 'Mobi-star';
   arrowStatus: any = true;
-  screenLoading: any = true;
   constructor(public _user: UserService, private _route: Router) {
     if (sessionStorage.getItem('token') && sessionStorage.getItem('mac')) {
       _user.profile().subscribe((res: any) => {
@@ -28,9 +28,9 @@ export class AppComponent implements AfterViewInit {
     };
   }
   ngAfterViewInit() {
-   setTimeout(() => {
+    setTimeout(() => {
       this.screenLoading = false;
-   }, 1000);
+    }, 1000);
   }
   goUpHandler = (e: any) => {
     e.preventDefault();

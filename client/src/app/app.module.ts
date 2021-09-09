@@ -51,6 +51,8 @@ import { OrdersComponent } from './admin/dashboard/components/orders/orders.comp
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ComparsionComponent } from './pages/comparsion/comparsion.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { LoadingPageComponent } from './components/loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import { ComparsionComponent } from './pages/comparsion/comparsion.component';
     AboutUsComponent,
     ContactComponent,
     ComparsionComponent,
+    ChatComponent,
+    LoadingPageComponent,
   ],
   imports: [
     BrowserModule,
