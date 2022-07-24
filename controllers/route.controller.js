@@ -1,5 +1,5 @@
-const routeModel = require("../../db/models/routes.model");
-const roleModel = require("../../db/models/roles.model");
+const routeModel = require("../db/models/routes.model");
+const roleModel = require("../db/models/roles.model");
 
 class Route {
   static getAllRouts = async (req, res) => {

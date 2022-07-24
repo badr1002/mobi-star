@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const routeControlles = require('../app/controllers/route.controller');
-const auth = require('../app/middleware/auth');
+const routeControlles = require('../controllers/route.controller');
+const auth = require('../middleware/auth');
 
 router.post('/addRoute',auth, routeControlles.addRoute)
 router.post("/addRole", auth, routeControlles.addRole);

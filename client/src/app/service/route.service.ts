@@ -2,27 +2,25 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { backendUrl } from 'src/environments/backendUrl';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RouteService {
-  url = backendUrl;
   constructor(private _http: HttpClient, private _router: Router) {}
   getAllRoutes(): Observable<any> {
-    return this._http.get(`${this.url}/route/allRoutes`);
+    return this._http.get(`/api/route/allRoutes`);
   }
   addRoute(roles: any[], url: any): Observable<any> {
-    return this._http.post(`${this.url}/route/addRoute`, { roles, url });
+    return this._http.post(`/api/route/addRoute`, { roles, url });
   }
   deleteRoute(id: any): Observable<any> {
-    return this._http.patch(`${this.url}/route/deleteRoute`, { id });
+    return this._http.patch(`/api/route/deleteRoute`, { id });
   }
   deleteRole(id: any, role: any): Observable<any> {
-    return this._http.patch(`${this.url}/route/deleteRole`, { id: id, role });
+    return this._http.patch(`/api/route/deleteRole`, { id: id, role });
   }
   addRole(id: any, role: any): Observable<any> {
-    return this._http.post(`${this.url}/route/addRole`, { id: id, role });
+    return this._http.post(`/api/route/addRole`, { id: id, role });
   }
 }

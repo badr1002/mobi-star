@@ -1,6 +1,6 @@
 const multer = require("multer");
 const path = require('path')
-const linkImageProfile = path.join(__dirname, "../../client/src/assets/uploads/profileImage");
+const linkImageProfile = path.join(__dirname, "../client/src/assets/uploads/profileImage");
 const linkImagePhone = path.join(
   __dirname,
   "../../client/src/assets/uploads/phoneImage"

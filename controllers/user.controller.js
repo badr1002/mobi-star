@@ -1,4 +1,4 @@
-const userModel = require("../../db/models/user.model");
+const userModel = require("../db/models/user.model");
 const bcrypt = require("bcryptjs");
 const mailer = require("../helpers/sendMailer.mailer");
 
@@ -53,7 +53,7 @@ class User {
       const user = await userModel.findUser(req.body.email, req.body.password);
       if (!user.activate) {
         user.activeKey = user._id;
-        mailer.activeMail(user.email, user.activeKey);
+        await mailer.sendMailToActiveAcoount(user.activeKey, user.email);
       } else if (!user.userStatus) {
         throw new Error(
           "This account are blocked! you can contact with us to reEnable it!"
@@ -203,7 +203,7 @@ class User {
     try {
       const user = await userModel.findOne({ email: req.body.email });
       if (!user) throw new Error("email not found!");
-      mailer.setPass(req.body.email, user._id);
+      await mailer.sendMailerToSetNewPassword(user._id.toString(), req.body.email);
       res.status(200).send({
         apiStatus: true,
         msg: "check your email",

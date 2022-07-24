@@ -1,5 +1,5 @@
-const userModel = require('../../db/models/user.model');
-const routeModel = require('../../db/models/routes.model');
+const userModel = require('../db/models/user.model');
+const routeModel = require('../db/models/routes.model');
 const jwt = require('jsonwebtoken');
 
 // check user  

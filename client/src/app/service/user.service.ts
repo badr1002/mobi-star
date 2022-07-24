@@ -10,13 +10,11 @@ import {
   getDownloadURL,
   deleteObject,
 } from '@angular/fire/storage';
-import { backendUrl } from 'src/environments/backendUrl';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  url = backendUrl;
   activeStatus: any = true;
   isLogin = false;
   isAdmin = false;
@@ -24,23 +22,23 @@ export class UserService {
   comparsion: any[] = [];
   constructor(private _http: HttpClient, private _router: Router) {}
   login(data: any): Observable<any> {
-    return this._http.post(`${this.url}/user/login`, data);
+    return this._http.post(`/api/user/login`, data);
   }
   register(data: any): Observable<any> {
-    return this._http.post(`${this.url}/user/register`, data);
+    return this._http.post(`/api/user/register`, data);
   }
   profile(): Observable<any> {
-    return this._http.get(`${this.url}/user/me`);
+    return this._http.get(`/api/user/me`);
   }
   editProfile(data: any): Observable<any> {
-    return this._http.patch(`${this.url}/user/edit`, data);
+    return this._http.patch(`/api/user/edit`, data);
   }
   dashboard(): Observable<any> {
-    return this._http.get(`${this.url}/user/dashboard`);
+    return this._http.get(`/api/user/dashboard`);
   }
 
   profileImage(name: any, link: any): Observable<any> {
-    return this._http.patch(`${this.url}/user/profileImage`, {
+    return this._http.patch(`/api/user/profileImage`, {
       name: name,
       link: link,
     });
@@ -64,7 +62,7 @@ export class UserService {
 
     deleteObject(desertRef)
       .then(() => {
-        this._http.patch(`${this.url}/user/deleteProfileImage`, {}).subscribe();
+        this._http.patch(`/api/user/deleteProfileImage`, {}).subscribe();
         console.log('deleted');
       })
       .catch((error) => {
@@ -72,37 +70,37 @@ export class UserService {
       });
   }
   logout() {
-    return this._http.patch(`${this.url}/user/logout`, {});
+    return this._http.patch(`/api/user/logout`, {});
   }
   forgetPassword(data: any): Observable<any> {
-    return this._http.post(`${this.url}/user/forget/password`, data);
+    return this._http.post(`/api/user/forget/password`, data);
   }
 
   checkCode(data: any): Observable<any> {
-    return this._http.post(`${this.url}/user/check/code`, data);
+    return this._http.post(`/api/user/check/code`, data);
   }
   setNewPassword(data: any): Observable<any> {
-    return this._http.patch(`${this.url}/user/set/password`, data);
+    return this._http.patch(`/api/user/set/password`, data);
   }
 
   getAllUsers(): Observable<any> {
-    return this._http.get(`${this.url}/user/allUsers`);
+    return this._http.get(`/api/user/allUsers`);
   }
 
   enableUser(id: any): Observable<any> {
-    return this._http.patch(`${this.url}/user/enableUser`, { id });
+    return this._http.patch(`/api/user/enableUser`, { id });
   }
   disableUser(id: any): Observable<any> {
-    return this._http.patch(`${this.url}/user/disableUser`, { id });
+    return this._http.patch(`/api/user/disableUser`, { id });
   }
   contactMessage(data: any): Observable<any> {
-    return this._http.post(`${this.url}/contact`, data);
+    return this._http.post(`/api/contact`, data);
   }
 
   addToComparsion(id: any): Observable<any> {
-    return this._http.post(`${this.url}/user/addToComparsion`, { id });
+    return this._http.post(`/api/user/addToComparsion`, { id });
   }
   deleteFromComparsion(id: any): Observable<any> {
-    return this._http.patch(`${this.url}/user/deleteFromComparsion`, { id });
+    return this._http.patch(`/api/user/deleteFromComparsion`, { id });
   }
 }

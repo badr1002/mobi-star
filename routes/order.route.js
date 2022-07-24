@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const orderControlles = require("../app/controllers/order.controller");
-const auth = require("../app/middleware/auth");
+const orderControlles = require("../controllers/order.controller");
+const auth = require("../middleware/auth");
 
 router.post("/addOrder", auth, orderControlles.addOrder);
 router.patch("/completeOrder", auth, orderControlles.completeOrder);

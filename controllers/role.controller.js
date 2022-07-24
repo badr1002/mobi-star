@@ -1,4 +1,4 @@
-const roleModel = require('../../db/models/roles.model');
+const roleModel = require('../db/models/roles.model');
 
 class Role {
 

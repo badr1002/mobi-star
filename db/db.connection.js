@@ -1,42 +1,18 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
-// const options = {
-//     useCreateIndex:true,
-//     useFindAndModify:true,
-//     useNewUrlParser:true,
-//     useUnifiedTopology: true,
 
-// }
 
-// try {
-//     mongoose.connect(
-//       process.env.DBURL,
-//       options
-//     );
-//     console.log("db connected");
-// }
-// catch(e){console.log(e)}
-
-mongoose
-  .connect(
-    "mongodb://" +
-      process.env.COSMOSDB_HOST +
-      ":" +
-      process.env.COSMOSDB_PORT +
-      "/" +
-      process.env.COSMOSDB_DBNAME +
-      "?ssl=true&replicaSet=globaldb",
-    {
-      auth: {
-        user: process.env.COSMOSDB_USER,
-        password: process.env.COSMOSDB_PASSWORD,
-      },
-      useCreateIndex: true,
-      useFindAndModify: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      retryWrites: false,
+module.exports = {
+  reConnectMongoose: async () => {
+    try {
+      mongoose.connect(process.env.DBURL, {
+        useNewUrlParser: true, useUnifiedTopology: true, retryWrites: true
+      });
+      console.log("Database connected successfully");
+    } catch (err) {
+      console.log("Database invalid connection!");
+      setTimeout(() => {
+        module.exports.reConnectMongoose();
+      }, 5000);
     }
-  )
-  .then(() => console.log("Connection to CosmosDB successful"))
-  .catch((err) => console.error(err));
+  }
+}
